@@ -8,3 +8,4 @@ psycopg2
 sentry
 sentry-auth-google
 sentry-github
+sentry-slack

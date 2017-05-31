@@ -33,6 +33,8 @@ SENTRY_SINGLE_ORGANIZATION = True
 # Should Sentry allow users to create new accounts?
 SENTRY_FEATURES['auth:register'] = False
 
+DEBUG = False
+
 #########
 # Redis #
 #########
@@ -69,16 +71,15 @@ SENTRY_OPTIONS['redis.clusters'] = {
 #         'LOCATION': ['127.0.0.1:11211'],
 #     }
 # }
-#
-# SENTRY_CACHE = 'sentry.cache.django.DjangoCache'
 
+# A primary cache is required for things such as processing events
 SENTRY_CACHE = 'sentry.cache.redis.RedisCache'
 
 #########
 # Queue #
 #########
 
-# See https://docs.getsentry.com/on-premise/server/queue/ for more
+# See https://docs.sentry.io/on-premise/server/queue/ for more
 # information on configuring your queue broker and workers. Sentry relies
 # on a Python framework called Celery to manage queues.
 
@@ -122,6 +123,14 @@ SENTRY_QUOTAS = 'sentry.quotas.redis.RedisQuota'
 # alerts possible.
 
 SENTRY_TSDB = 'sentry.tsdb.redis.RedisTSDB'
+
+###########
+# Digests #
+###########
+
+# The digest backend powers notification summaries.
+
+SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 
 ################
 # File storage #
